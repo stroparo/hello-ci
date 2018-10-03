@@ -23,12 +23,18 @@ pipeline {
 
     stages {
 
-        stage('Build hello-ci app into a container') {
+        stage('Build hello-ci app') {
             agent any
             steps {
                 cleanWs()
                 checkout scm
                 sh './gradlew build installDist'
+            }
+        }
+
+        stage('Build hello-ci container') {
+            agent any
+            steps {
                 sh 'docker build -f Dockerfile -t stroparo/hello-ci .'
             }
         }
