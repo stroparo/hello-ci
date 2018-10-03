@@ -28,8 +28,7 @@ pipeline {
             steps {
                 cleanWs()
                 checkout scm
-                sh './gradlew build'
-                sh 'pwd ; ls -l ; ls -l build ; echo ; echo Searching... ; echo ; find . -type d -name install'
+                sh './gradlew build installDist'
                 sh 'docker build -f Dockerfile -t stroparo/hello-ci .'
             }
         }
