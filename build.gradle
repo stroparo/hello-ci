@@ -5,9 +5,10 @@
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
 
-apply plugin: 'java'
-apply plugin: 'application'
-mainClassName = 'HelloWorld'
+plugins {
+  id 'java'
+  id 'application'
+}
 
 repositories {
   jcenter()
@@ -17,3 +18,4 @@ dependencies {
   implementation "com.sparkjava:spark-core:2.7.2"
 }
 
+mainClassName = 'HelloWorld'
