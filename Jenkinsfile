@@ -3,7 +3,7 @@
 container_name = 'helloci'
 container_image_name = 'stroparo/hello-ci'
 docker_host_port = 80
-docker_container_port = 4567
+docker_container_port = 4321
 
 pipeline {
 
