@@ -1,9 +1,9 @@
 FROM openjdk:12-alpine
 
-EXPOSE 80 4567/tcp
+COPY ./build/install/helloCI /helloCI
 
 RUN apk add --no-cache bash
 
-COPY ./build/install/helloCI /helloCI
+EXPOSE 80 4567/tcp
 
 ENTRYPOINT ["/helloCI/bin/helloCI"]
