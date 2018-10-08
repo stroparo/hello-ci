@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-container_name = 'helloci'
+project_name = 'helloci'
 container_image_name = 'stroparo/hello-ci'
 docker_host_port = 80
 docker_container_port = 4321
@@ -23,7 +23,7 @@ pipeline {
 
     stages {
 
-        stage('Build hello-ci app') {
+        stage("Build ${project_name} app") {
             agent any
             steps {
                 cleanWs()
@@ -32,10 +32,10 @@ pipeline {
             }
         }
 
-        stage('Build hello-ci container') {
+        stage('Build ${project_name} container') {
             agent any
             steps {
-                sh 'docker build -f Dockerfile -t stroparo/hello-ci .'
+                sh "docker build -f Dockerfile -t ${container_image_name} ."
             }
         }
 
@@ -47,10 +47,10 @@ pipeline {
 
                 // TODO Refactor this to handle it efficiently
 
-                sh "docker stop ${container_name} || true"
-                sh "docker rm ${container_name} || true"
-                sh "!(docker ps | grep -q ${container_name})"
-                sh "docker run -d --name ${container_name} -p ${docker_host_port}:${docker_container_port} ${container_image_name}"
+                sh "docker stop ${project_name} || true"
+                sh "docker rm ${project_name} || true"
+                sh "!(docker ps | grep -q ${project_name})"
+                sh "docker run -d --name ${project_name} -p ${docker_host_port}:${docker_container_port} ${container_image_name}"
             }
         }
 
