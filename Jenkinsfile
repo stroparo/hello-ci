@@ -23,7 +23,7 @@ pipeline {
 
     stages {
 
-        stage("Build ${project_name} app") {
+        stage("Build app") {
             agent any
             steps {
                 cleanWs()
