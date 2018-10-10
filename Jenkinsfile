@@ -32,7 +32,7 @@ pipeline {
             }
         }
 
-        stage('Build ${project_name} container') {
+        stage('Build container') {
             agent any
             steps {
                 sh "docker build -f Dockerfile -t ${container_image_name} ."
